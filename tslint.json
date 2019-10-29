@@ -1,0 +1,48 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "ordered-imports": false,
+    "no-console": false,
+    "trailing-comma": false,
+    "no-invalid-this": false,
+    "only-arrow-functions": false,
+    "no-empty-interface": true,
+    "no-any": false,
+    "ban-comma-operator": true,
+    "no-var-requires": true,
+    "no-non-null-assertion": false,
+    "prefer-for-of": false,
+    "no-reference": true,
+    "no-unnecessary-type-assertion": true,
+    "await-promise": true,
+    "quotemark": [true, "single", "avoid-escape"],
+    "curly": [true, "ignore-same-line"],
+    "import-blacklist": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-duplicate-super": true,
+    "no-empty": [true, "allow-empty-catch"],
+    "no-eval": true,
+    "no-floating-promises": true,
+    "no-for-in-array": true,
+    "no-shadowed-variable":false,
+    "no-invalid-template-strings": true,
+    "indent": [true, "spaces", 2],
+    "use-isnan": true,
+    "no-this-assignment": [
+      false,
+      {
+        "allowed-names": ["^self$", "^that$"],
+        "allow-destructuring": true
+      }
+    ],
+    "no-var-keyword": true,
+    "triple-equals": true,
+    "return-undefined": false,
+    "object-literal-sort-keys": false,
+    "max-line-length": false
+  },
+  "rulesDirectory": []
+}

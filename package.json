@@ -1,0 +1,47 @@
+{
+  "name": "auto-image-watermark",
+  "version": "1.0.0",
+  "description": "H5端一键生成海报，图片水印，图片合成等",
+  "main": "dist/index.min.js",
+  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
+  "dependencies": {},
+  "keywords": [
+    "canvas",
+    "watermark",
+    "ts",
+    "image",
+    "图片水印",
+    "图片合成",
+    "海报生成"
+  ],
+  "author": "wgj0913",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear": "rm -rf dist",
+    "dev": "webpack-dev-server --config=webpack/webpack.dev.config.js",
+    "build": "NODE_ENV=production webpack --config=webpack/webpack.prod.config.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "@types/node": "^11.13.6",
+    "babel-istanbul": "^0.12.2",
+    "babel-loader": "^8.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "nyc": "^14.1.1",
+    "ts-loader": "^5.4.3",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.5.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.2"
+  }
+}

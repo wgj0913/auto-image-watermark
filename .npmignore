@@ -1,0 +1,14 @@
+node_modules
+.vscode
+.DS_Store
+.idea/*
+tsconfig.json
+tslint.json
+.gitngnore
+.npmignore
+.npmrc
+webpack
+package-lock.json
+index.html
+src
+*.md
