@@ -1,7 +1,7 @@
 import { IConfig } from '../models/interface';
 import { configToData } from './utils';
 import { createCanvas, draw } from './canvas';
-import { drawBlock } from './block';
+import { drawBlock,drawCirleBlock } from './block';
 import { drawText } from './text';
 import { drawLine } from './line';
 import { drawImage, drawCirleImage } from './image';
@@ -18,20 +18,13 @@ export function create(config: IConfig) {
       const item = data[i];
 
       if (item.type === 'blocks') {
-        drawBlock(item);
+        drawCirleBlock(item);
       } else if (item.type === 'texts') {
         drawText(item, false);
       } else if (item.type === 'lines') {
         drawLine(item);
       } else if (item.type === 'images') {
-
-        const { width, height, borderRadius } = item;
-
-        if (width === height && width === borderRadius) {
-          await drawCirleImage(item);
-        } else {
-          await drawImage(item);
-        }
+        await drawCirleImage(item);
       }
     }
 

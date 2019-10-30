@@ -9,7 +9,7 @@ import { hex2Rgb, rgb2rgba, mutiSort, color2Rgb } from './utils';
  * @param maxWidth 文字最大宽度
  */
 const dealWords = (ctx: any, text: string, maxWidth: number) => {
-  const textWidth = ctx.measureText(text).width * pixelRatio;
+  const textWidth = ctx.measureText(text).width;
   const radio = text.length / textWidth;
   const dis = textWidth - maxWidth;
   if (dis > 0) {
@@ -43,13 +43,12 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
     marginLeft,
     marginRight,
     textDecoration,
-    baseLine = 'alphabetic',
+    baseLine = 'top',
     textAlign = 'start',
     fontFamily = 'sans-serif',
     fontWeight = 'normal',
     fontStyle = 'normal'
   } = texts;
-  console.log('console', text)
 
   // 格式化颜色
   if (color.substring(0, 1) === '#') {
@@ -64,7 +63,6 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
 
   const dealText = dealWords(ctx, text, width);
   if (isBlock) {
-    console.log("textWidth" , ctx.measureText(text).width , blockWidth)
     const textWidth = ctx.measureText(text).width;
 
     // 判断文字是否在blocks中

@@ -4,6 +4,40 @@ import { mutiSort } from './utils';
 import { drawText, texts } from './text';
 
 /**
+ * 封装的一个用于绘制圆形或圆角矩形的函数
+ * @param blocks
+ */
+export const drawCirleBlock = (blocks: IBlocks) => {
+  const ctx = globalCanvas.getContext('2d');
+  const { x, y, width, height, borderWidth, borderColor, borderRadius: radius = 0, backgroundColor, text = '' } = blocks;
+  const r = radius;
+  const w = width;
+  const h = height;
+  const br = r / 2;
+  console.log(x, borderWidth, borderColor);
+  ctx.beginPath();
+  ctx.moveTo(x + br, y); // 移动到左上角的点
+  ctx.lineTo(x + w - br, y);
+  ctx.arc(x + w - br, y + br, br, 2 * Math.PI * (3 / 4), 2 * Math.PI * (4 / 4));
+  ctx.lineTo(x + w, y + h - br);
+  ctx.arc(x + w - br, y + h - br, br, 0, 2 * Math.PI * (1 / 4));
+  ctx.lineTo(x + br, y + h);
+  ctx.arc(x + br, y + h - br, br, 2 * Math.PI * (1 / 4), 2 * Math.PI * (2 / 4));
+  ctx.lineTo(x, y + br);
+  ctx.arc(x + br, y + br, br, 2 * Math.PI * (2 / 4), 2 * Math.PI * (3 / 4));
+  if (borderWidth || borderColor) {
+    ctx.lineWidth = borderWidth;
+    ctx.strokeStyle = borderColor;
+    ctx.stroke();
+  }
+  ctx.fillStyle = backgroundColor; // rgba(ff,ff,ff,opacity)
+  ctx.fill();
+  if (text !== '') {
+    texts(text.text, { isBlock: true, x, y, width, height });
+  }
+};
+
+/**
  * 封装的一个用于绘制圆角矩形的函数
  * @param blocks
  */

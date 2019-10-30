@@ -3,14 +3,14 @@ let pixelRatio = globalThis.devicePixelRatio;
 // canvas初始化
 export const createCanvas = (width: number, height: number, backgroundColor: string = '#fff') => {
   globalCanvas = document.createElement('canvas');
-  globalCanvas.width = width * pixelRatio;
-  globalCanvas.height = height * pixelRatio;
-  globalCanvas.style.width = width + 'px';
-  globalCanvas.style.height = height + 'px';
-  const ctx = globalCanvas.getContext('2d')!;
+  globalCanvas.width = width;
+  globalCanvas.height = height;
+  globalCanvas.style.width = width / pixelRatio + 'px';
+  globalCanvas.style.height = height / pixelRatio + 'px';
+  const ctx = globalCanvas.getContext('2d');
   ctx.beginPath();
   ctx.fillStyle = backgroundColor;
-  ctx.fillRect(0, 0, width * pixelRatio, height * pixelRatio);
+  ctx.fillRect(0, 0, width, height);
   return globalCanvas;
 };
 

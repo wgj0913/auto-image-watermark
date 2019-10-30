@@ -146,8 +146,8 @@ const H5 = create({
 | color       |  否    |       String        |  文字颜色      |
 | opacity       |  否    |       Number        |  文字透明度      |
 | width      |  否    |       Number        |  文字最大宽度    |
-| baseLine       |  否    |       String        |  基线对齐方式      |
-| textAlign       |  否    |       String        |  对齐方式    |
+| baseLine       |  否    |       String        |  top\|bottom\|middle\|alphabetic\|hanging 基线对齐方式      |
+| textAlign       |  否    |       String        | start\|end\|left\|center\|right 对齐方式   |
 | fontFamily       |  否    |       String        |  文字字体   |
 | fontWeight       |  否    |       String        |  文字加粗   |
 | fontStyle       |  否    |       String        |  文字倾斜    |
@@ -175,6 +175,12 @@ const H5 = create({
 4.单位统一(px);
 
 ## CHANGELOG
+
+### V1.0.1
+
+1. 新增圆形block，优化生成圆形图片方式；
+2. 优化文字宽度省略问题；
+3. 优化画布和画板的高宽；
 
 ### V1.0.0
 
