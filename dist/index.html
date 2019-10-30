@@ -1,0 +1,112 @@
+<!--
+ * @Date: 2019-10-25 16:01:50
+ * @LastEditors: guojian.wu
+ * @LastEditTime: 2019-10-29 14:05:45
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+
+<script type="text/javascript" src="index.min.js"></script></body>
+<script>
+  const save = () => {
+    const base64 = H5SDK.create({
+      width: 375,
+      height: 600,
+      backgroundColor: '#fff',
+      debug: false,
+      pixelRatio: 2,
+      blocks: [{
+          width: 650,
+          height: 300,
+          x: 1,
+          y: 2,
+          borderWidth: 4,
+          borderColor: '#000',
+          borderRadius: 30,
+          backgroundColor: '#fff',
+          text: {
+            text: [{
+                x: 12,
+                y: 40,
+                text: '块中的文字',
+                fontSize: 35,
+                color: '#f00',
+                width: 300
+              },
+              {
+                x: 182,
+                y: 90,
+                text: '过长文字缩略lala',
+                fontSize: 35,
+                color: '#f76',
+                width: 300
+              }
+            ]
+
+          },
+          zIndex: 1
+        },
+        {
+          width: 650,
+          height: 200,
+          x: 10,
+          y: 400,
+          borderWidth: 6,
+          borderColor: '#ff00ff',
+          borderRadius: 50,
+          backgroundColor: '#ff0',
+          opacity: 0.5,
+          zIndex: 2
+        },
+      ],
+      lines: [{
+        startX: 250,
+        startY: 250,
+        endX: 550,
+        endY: 250,
+        width: 9,
+        color: 'green',
+        zIndex: 128
+      }],
+      texts: [{
+        x: 113,
+        y: 132,
+        text: 'hello world',
+        fontSize: 57,
+        baseLine: 'middle',
+        textAlign: 'left',
+        color: 'rgba(255,0,0)',
+        zIndex: 8
+      }, ],
+      images: [{
+          width: 276,
+          x: 74,
+          y: 170,
+          borderRadius: 12,
+          borderColor: '#f30',
+          borderWidth: 4,
+          url: 'https://lc-I0j7ktVK.cn-n1.lcfile.com/02bb99132352b5b5dcea.jpg',
+          zIndex: 40
+        }
+      ]
+    })
+    base64.then((base64) => {
+      // console.log(base64);
+    });
+  };
+  save()
+</script>
+
+</html>
