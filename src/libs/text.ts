@@ -33,7 +33,7 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
   const {
     x,
     y,
-    text,
+    text='',
     fontSize,
     color = '#000',
     opacity = 1,
@@ -49,6 +49,7 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
     fontWeight = 'normal',
     fontStyle = 'normal'
   } = texts;
+  console.log('console', text)
 
   // 格式化颜色
   if (color.substring(0, 1) === '#') {
@@ -63,7 +64,8 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
 
   const dealText = dealWords(ctx, text, width);
   if (isBlock) {
-    const textWidth = ctx.measureText(text).width * pixelRatio;
+    console.log("textWidth" , ctx.measureText(text).width , blockWidth)
+    const textWidth = ctx.measureText(text).width;
 
     // 判断文字是否在blocks中
     if (x > blockX && x + textWidth < blockX + blockWidth && (y > blockY + fontSize && y + fontSize < blockY + blockHeight)) {

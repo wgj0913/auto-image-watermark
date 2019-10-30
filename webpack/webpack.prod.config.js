@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const env = process.env.NODE_ENV || 'none';
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.resolve('./src/index.ts'),
@@ -16,11 +18,27 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js']
   },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin(
+    {
+      terserOptions: {
+        warnings: false,
+        compress:{
+          drop_console:true
+        }
+      }
+    }
+    )],
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(env)
       }
+    }),
+    new HtmlWebpackPlugin({
+      template: "index.html"
     })
   ],
   mode: 'production',
