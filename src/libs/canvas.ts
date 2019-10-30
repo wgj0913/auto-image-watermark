@@ -1,5 +1,5 @@
-let globalCanvas: any;
-let pixelRatio = window.devicePixelRatio;
+let globalCanvas: HTMLCanvasElement & Node & any;
+let pixelRatio = globalThis.devicePixelRatio;
 // canvas初始化
 export const createCanvas = (width: number, height: number, backgroundColor: string = '#fff') => {
   globalCanvas = document.createElement('canvas');
@@ -7,7 +7,7 @@ export const createCanvas = (width: number, height: number, backgroundColor: str
   globalCanvas.height = height * pixelRatio;
   globalCanvas.style.width = width + 'px';
   globalCanvas.style.height = height + 'px';
-  const ctx = globalCanvas.getContext('2d');
+  const ctx = globalCanvas.getContext('2d')!;
   ctx.beginPath();
   ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, width * pixelRatio, height * pixelRatio);
