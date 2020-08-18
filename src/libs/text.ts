@@ -8,14 +8,30 @@ import { hex2Rgb, rgb2rgba, mutiSort, color2Rgb } from './utils';
  * @param text
  * @param maxWidth 文字最大宽度
  */
-const dealWords = (ctx: any, text: string, maxWidth: number) => {
-  const textWidth = ctx.measureText(text).width;
+const dealWords = (ctx: any, text: string, maxWidth: number, options: { autoLines?: boolean, x: number, y: number, fontSize: number }) => {
+  const { autoLines, x, y, fontSize } = options;
+  let textWidth = ctx.measureText(text).width * pixelRatio;
+  let textHeight = fontSize;
   const radio = text.length / textWidth;
-  const dis = textWidth - maxWidth;
-  if (dis > 0) {
-    text = text.slice(0, text.length - dis * radio) + '...';
+  const responseArr = [];
+  let count = 0;
+  while (textWidth > 0) {
+    let dis = textWidth - maxWidth;
+    let $y = count * textHeight + y!;
+    if (autoLines) {
+        responseArr.push({text: text.slice(0, text.length - dis * radio), x, y: $y});
+        text = text.slice(text.length - dis * radio);        
+    } else {
+      if (dis > 0) {
+        text = text.slice(0, text.length - dis * radio) + '...';
+      }
+      responseArr.push({text, x, y})
+      break;
+    }
+    textWidth -= maxWidth;
+    count ++;
   }
-  return text;
+  return responseArr;
 };
 
 /**
@@ -33,7 +49,7 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
   const {
     x,
     y,
-    text='',
+    text = '',
     fontSize,
     color = '#000',
     opacity = 1,
@@ -47,7 +63,8 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
     textAlign = 'start',
     fontFamily = 'sans-serif',
     fontWeight = 'normal',
-    fontStyle = 'normal'
+    fontStyle = 'normal',
+    autoLines = false,
   } = texts;
 
   // 格式化颜色
@@ -61,25 +78,31 @@ export const drawText = (texts: ITexts, isBlock: boolean, blockX: number = 0, bl
     rgba = rgb2rgba(color2Rgb(color)!, opacity);
   }
 
-  const dealText = dealWords(ctx, text, width);
-  if (isBlock) {
-    const textWidth = ctx.measureText(text).width;
+  const dealTextArr = dealWords(ctx, text, width, { autoLines, x, y, fontSize });
+  dealTextArr.map($ => {
+    const { text: dealText , x, y } = $;
+    if (isBlock) {
+      const textWidth = ctx.measureText(dealText).width;
+      // 判断文字是否在blocks中
+      if (x > blockX && x + textWidth < blockX + blockWidth && (y > blockY + fontSize && y + fontSize < blockY + blockHeight)) {
+        ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
+        ctx.fillStyle = rgba;
+        ctx.textBaseline = baseLine;
+        ctx.textAlign = textAlign;
+        console.log(dealText, x, y)
 
-    // 判断文字是否在blocks中
-    if (x > blockX && x + textWidth < blockX + blockWidth && (y > blockY + fontSize && y + fontSize < blockY + blockHeight)) {
+        ctx.fillText(dealText, x, y);
+      }
+    } else {
       ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
       ctx.fillStyle = rgba;
       ctx.textBaseline = baseLine;
       ctx.textAlign = textAlign;
       ctx.fillText(dealText, x, y);
     }
-  } else {
-    ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
-    ctx.fillStyle = rgba;
-    ctx.textBaseline = baseLine;
-    ctx.textAlign = textAlign;
-    ctx.fillText(dealText, x, y);
-  }
+
+  })
+
 };
 
 /**

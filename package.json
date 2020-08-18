@@ -1,6 +1,6 @@
 {
   "name": "auto-image-watermark",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "H5端一键生成海报，图片水印，图片合成等",
   "main": "dist/index.min.js",
   "typings": "dist/index.d.ts",
