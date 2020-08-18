@@ -18,6 +18,7 @@ export interface ITexts {
   fontWeight?: string;
   fontStyle?: string;
   type?: string;
+  autoLines?: boolean;
 }
 
 export interface IBlocks {

@@ -152,7 +152,7 @@ const H5 = create({
 | fontWeight       |  否    |       String        |  文字加粗   |
 | fontStyle       |  否    |       String        |  文字倾斜    |
 | zIndex      |  否    |       Number       |  层级，越大越高     |
-
+| autoLines   |  否    |       Boolean       |  文字是都支持自动换行 default： false    |
 ### images 参数说明
 
 | 参数            | 必填   |       类型         |  说明      |
